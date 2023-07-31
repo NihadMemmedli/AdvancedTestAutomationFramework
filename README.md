@@ -1,4 +1,4 @@
-# Selenium WebDriver Framework
+# Advanced Test Automation Framework
 
 This is a customizable Selenium WebDriver automation framework, designed to support multiple browsers, remote execution, and various other features.
 
