@@ -1,5 +1,6 @@
 package com.company.automation.common;// Import necessary classes
-import org.apache.log4j.Logger;
+
+import org.testng.log4testng.Logger;
 
 /**
  * LoggerUtil is a utility class that provides an interface for logging.

@@ -14,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
  */
 public class HeadlessConfigurationManager {
 
+    boolean isHeadless = Boolean.parseBoolean(ConfigurationManager.getInstance().getProperty("headless"));
     /**
      * Sets up and returns the headless options for Chrome.
      *
@@ -21,15 +22,21 @@ public class HeadlessConfigurationManager {
      */
     public ChromeOptions getHeadlessChromeOptions() {
         ChromeOptions options = new ChromeOptions();
+        if (isHeadless) {
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            System.out.println(options);
 
-        boolean isHeadless = Boolean.parseBoolean(ConfigurationManager.getInstance().getProperty("headless"));
-        options.setHeadless(isHeadless);
+        }
 
         String windowSize = ConfigurationManager.getInstance().getProperty("window.size");
         options.addArguments("window-size=" + (windowSize != null ? windowSize : "1920,1080"));
 
         return options;
     }
+
 
     /**
      * Sets up and returns the headless options for Firefox.
@@ -39,8 +46,11 @@ public class HeadlessConfigurationManager {
     public FirefoxOptions getHeadlessFirefoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
 
-        boolean isHeadless = Boolean.parseBoolean(ConfigurationManager.getInstance().getProperty("headless"));
-        options.setHeadless(isHeadless);
+        if (isHeadless) {
+            options.addArguments("--headless");
+            System.out.println(options);
+
+        }
 
         String windowSize = ConfigurationManager.getInstance().getProperty("window.size");
         options.addArguments("window-size=" + (windowSize != null ? windowSize : "1920,1080"));

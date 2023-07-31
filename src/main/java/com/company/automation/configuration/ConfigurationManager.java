@@ -3,6 +3,7 @@ import com.company.automation.common.LoggerUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -36,7 +37,7 @@ public class ConfigurationManager {
             try {
                 // Use try-with-resources block for automatic resource management (ARM)
                 // Open a FileInputStream to read the config file
-                try (FileInputStream in = new FileInputStream("./src/main/resources/config.properties")) {
+                try (InputStream in = getClass().getClassLoader().getResourceAsStream("config.properties");) {
                     // Load the properties from the config file into the Properties object
                     properties.load(in);
                 }
